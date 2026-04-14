@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry, My Love ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --pink-lightest:#FFF0F3;
+  --pink-light:#FFD6E0;
+  --pink-main:#FF8FAB;
+  --pink-mid:#FF6B8A;
+  --pink-dark:#E84578;
+  --pink-deep:#C2185B;
+  --rose:#FFB6C1;
+  --gold:#D4A574;
+  --text-dark:#4A1025;
+  --text-mid:#7A2E45;
+  --text-light:#A0506A;
+  --white:#FFFFFF;
+  --card-shadow:0 8px 32px rgba(232,69,120,0.15);
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--pink-lightest);
+  color:var(--text-dark);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Floating Hearts Background */
+.hearts-bg{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;overflow:hidden;
+}
+.floating-heart{
+  position:absolute;
+  color:var(--pink-main);
+  opacity:0;
+  animation:floatHeart linear infinite;
+  font-size:14px;
+}
+@keyframes floatHeart{
+  0%{opacity:0;transform:translateY(100vh) rotate(0deg) scale(0.5);}
+  10%{opacity:0.6;}
+  90%{opacity:0.3;}
+  100%{opacity:0;transform:translateY(-10vh) rotate(360deg) scale(1.2);}
+}
+
+/* Scroll Progress */
+.scroll-progress{
+  position:fixed;top:0;left:0;height:3px;
+  background:linear-gradient(90deg,var(--pink-dark),var(--pink-main),var(--pink-light));
+  z-index:1000;transition:width 0.1s;
+}
+
+/* Music Toggle */
+.music-btn{
+  position:fixed;top:20px;right:20px;z-index:999;
+  width:48px;height:48px;border-radius:50%;
+  background:var(--white);border:2px solid var(--pink-light);
+  box-shadow:var(--card-shadow);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all 0.3s;
+}
+.music-btn:hover{transform:scale(1.1);border-color:var(--pink-main);}
+.music-btn.playing{border-color:var(--pink-dark);background:var(--pink-lightest);}
+.music-btn.playing i{animation:spin 2s linear infinite;color:var(--pink-dark);}
+@keyframes spin{100%{transform:rotate(360deg);}}
+
+/* ===== SECTION 1: HERO ===== */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:40px 20px;
+  position:relative;z-index:1;
+  background:linear-gradient(180deg,var(--pink-lightest) 0%,var(--pink-light) 50%,var(--pink-lightest) 100%);
+}
+.hero-emoji{
+  font-size:60px;margin-bottom:20px;
+  animation:bounce 2s ease-in-out infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+}
+.hero h1{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(42px,10vw,72px);
+  color:var(--pink-deep);
+  margin-bottom:10px;
+  animation:fadeInUp 1s ease 0.3s both;
+}
+.hero .subtitle{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(16px,4vw,22px);
+  color:var(--text-mid);
+  font-style:italic;
+  margin-bottom:30px;
+  animation:fadeInUp 1s ease 0.6s both;
+}
+.hero .name-tag{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(28px,7vw,48px);
+  color:var(--pink-dark);
+  background:var(--white);
+  padding:10px 40px;border-radius:50px;
+  box-shadow:var(--card-shadow);
+  animation:fadeInUp 1s ease 0.9s both;
+}
+.scroll-hint{
+  position:absolute;bottom:30px;
+  animation:fadeInUp 1s ease 1.5s both, bounce 2s ease-in-out 2s infinite;
+  color:var(--text-light);font-size:14px;text-align:center;
+}
+.scroll-hint i{display:block;margin-top:5px;font-size:18px;}
+
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ===== SECTION 2: WHY YOU'RE SPECIAL ===== */
+.section-title{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(32px,8vw,52px);
+  color:var(--pink-deep);
+  text-align:center;
+  margin-bottom:10px;
+}
+.section-subtitle{
+  text-align:center;
+  color:var(--text-light);
+  font-size:14px;
+  margin-bottom:40px;
+}
+.special-section{
+  padding:60px 20px;
+  position:relative;z-index:1;
+}
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  max-width:420px;
+  margin:0 auto;
+}
+.flip-card{
+  height:140px;perspective:1000px;cursor:pointer;
+}
+.flip-card-inner{
+  position:relative;width:100%;height:100%;
+  transition:transform 0.8s cubic-bezier(0.4,0,0.2,1);
+  transform-style:preserve-3d;
+}
+.flip-card.flipped .flip-card-inner{
+  transform:rotateY(180deg);
+}
+.flip-card-front,.flip-card-back{
+  position:absolute;width:100%;height:100%;
+  backface-visibility:hidden;border-radius:20px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:12px;
+}
+.flip-card-front{
+  background:linear-gradient(145deg,var(--pink-light),var(--rose));
+  box-shadow:var(--card-shadow);
+}
+.flip-card-front .q-mark{
+  font-family:'Dancing Script',cursive;
+  font-size:48px;color:var(--white);
+  text-shadow:0 2px 8px rgba(194,24,91,0.3);
+}
+.flip-card-front .card-num{
+  font-size:11px;color:var(--text-mid);
+  margin-top:8px;font-weight:500;
+}
+.flip-card-back{
+  background:var(--white);
+  box-shadow:var(--card-shadow);
+  transform:rotateY(180deg);
+  text-align:center;
+}
+.flip-card-back .reason-icon{
+  font-size:24px;margin-bottom:8px;
+}
+.flip-card-back .reason-text{
+  font-size:12px;
+  color:var(--text-mid);
+  line-height:1.5;
+  font-family:'Lora',serif;
+  font-style:italic;
+}
+.tap-hint{
+  text-align:center;margin-top:20px;
+  color:var(--text-light);font-size:12px;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:0.5;}50%{opacity:1;}
+}
+
+/* ===== SECTION 3: LOVE LETTER ===== */
+.letter-section{
+  padding:60px 20px;
+  position:relative;z-index:1;
+  background:linear-gradient(180deg,transparent 0%,var(--pink-light) 50%,transparent 100%);
+}
+.letter-container{
+  max-width:500px;margin:0 auto;
+  position:relative;
+}
+.letter{
+  background:var(--white);
+  border-radius:24px;
+  padding:40px 30px;
+  box-shadow:var(--card-shadow);
+  position:relative;
+  overflow:hidden;
+}
+.letter::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--pink-light),var(--pink-main),var(--pink-dark));
+}
+.letter-header{
+  text-align:center;margin-bottom:25px;
+}
+.letter-header .dear{
+  font-family:'Dancing Script',cursive;
+  font-size:28px;color:var(--pink-deep);
+}
+.letter-body{
+  font-family:'Lora',serif;
+  font-size:15px;
+  color:var(--text-mid);
+  line-height:1.9;
+  text-align:center;
+}
+.letter-body .highlight{
+  color:var(--pink-dark);
+  font-weight:600;
+}
+.letter-sign{
+  text-align:right;margin-top:25px;
+  font-family:'Dancing Script',cursive;
+  font-size:24px;
+  color:var(--pink-deep);
+}
+.letter-sign .from{
+  font-family:'Poppins',sans-serif;
+  font-size:12px;color:var(--text-light);
+  font-style:italic;
+}
+
+/* ===== SECTION 4: MEMORIES ===== */
+.memories-section{
+  padding:60px 20px;
+  position:relative;z-index:1;
+}
+.memories-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  max-width:420px;
+  margin:0 auto 30px;
+}
+.memory-card{
+  position:relative;border-radius:20px;
+  overflow:hidden;
+  box-shadow:var(--card-shadow);
+  transition:transform 0.3s;
+}
+.memory-card:nth-child(1){
+  grid-row:span 2;
+}
+.memory-card:hover{transform:scale(1.03);}
+.memory-card img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+}
+.memory-card .memory-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:15px;
+  background:linear-gradient(transparent,rgba(74,16,37,0.7));
+  color:var(--white);
+}
+.memory-overlay .memory-label{
+  font-family:'Dancing Script',cursive;
+  font-size:16px;
+}
+.memory-overlay .memory-date{
+  font-size:11px;opacity:0.8;
+}
+
+/* ===== SECTION 5: PROMISES ===== */
+.promises-section{
+  padding:60px 20px;
+  position:relative;z-index:1;
+  background:linear-gradient(180deg,transparent 0%,rgba(255,214,224,0.3) 50%,transparent 100%);
+}
+.promises-list{
+  max-width:460px;margin:0 auto;
+  display:flex;flex-direction:column;gap:16px;
+}
+.promise-item{
+  background:var(--white);
+  border-radius:16px;
+  padding:20px 24px;
+  display:flex;align-items:flex-start;gap:16px;
+  box-shadow:var(--card-shadow);
+  transition:transform 0.3s, box-shadow 0.3s;
+  opacity:0;transform:translateX(-30px);
+}
+.promise-item.visible{
+  opacity:1;transform:translateX(0);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.promise-item:hover{
+  transform:translateX(5px);
+  box-shadow:0 8px 32px rgba(232,69,120,0.25);
+}
+.promise-icon{
+  width:42px;height:42px;min-width:42px;
+  border-radius:50%;
+  background:linear-gradient(145deg,var(--pink-light),var(--rose));
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);font-size:16px;
+}
+.promise-text{
+  font-family:'Lora',serif;
+  font-size:14px;
+  color:var(--text-mid);
+  line-height:1.6;
+  font-style:italic;
+}
+
+/* ===== SECTION 6: INTERACTIVE RESPONSE ===== */
+.response-section{
+  padding:80px 20px;
+  text-align:center;
+  position:relative;z-index:1;
+}
+.response-section .section-title{margin-bottom:30px;}
+.no-btn{
+  display:inline-block;
+  padding:14px 40px;
+  border:2px solid var(--pink-light);
+  border-radius:50px;
+  color:var(--text-light);
+  font-family:'Poppins',sans-serif;
+  font-size:14px;
+  cursor:pointer;
+  transition:all 0.2s;
+  margin:0 10px;
+  background:transparent;
+}
+.no-btn:hover{
+  transform:translate(
+    calc(var(--dx, 0px)),
+    calc(var(--dy, 0px))
+  );
+}
+.yes-btn{
+  display:inline-block;
+  padding:16px 50px;
+  border:none;border-radius:50px;
+  background:linear-gradient(145deg,var(--pink-mid),var(--pink-dark));
+  color:var(--white);
+  font-family:'Poppins',sans-serif;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 6px 24px rgba(232,69,120,0.4);
+  transition:all 0.3s;
+  margin:0 10px;
+}
+.yes-btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 8px 32px rgba(232,69,120,0.5);
+}
+
+/* Yes Response */
+.yes-response{
+  display:none;
+  animation:fadeInUp 0.8s ease;
+  margin-top:40px;
+}
+.yes-response.show{display:block;}
+.yes-heart-burst{
+  font-size:80px;
+  animation:bounce 1s ease-in-out infinite;
+}
+.yes-response h2{
+  font-family:'Dancing Script',cursive;
+  font-size:36px;color:var(--pink-deep);
+  margin:15px 0 10px;
+}
+.yes-response p{
+  color:var(--text-mid);font-size:15px;
+  font-family:'Lora',serif;font-style:italic;
+}
+
+/* Confetti */
+.confetti-container{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:9999;overflow:hidden;
+}
+.confetti-piece{
+  position:absolute;
+  width:10px;height:10px;
+  top:-10px;
+  animation:confettiFall linear forwards;
+}
+@keyframes confettiFall{
+  0%{transform:translateY(0) rotate(0deg);opacity:1;}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0;}
+}
+
+/* ===== SECTION 7: FOOTER ===== */
+.footer{
+  padding:40px 20px 60px;
+  text-align:center;
+  position:relative;z-index:1;
+}
+.footer-heart{
+  font-size:40px;margin-bottom:15px;
+  animation:heartbeat 1.5s ease-in-out infinite;
+}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  15%{transform:scale(1.25);}
+  30%{transform:scale(1);}
+  45%{transform:scale(1.15);}
+  60%{transform:scale(1);}
+}
+.footer p{
+  font-family:'Dancing Script',cursive;
+  font-size:20px;
+  color:var(--text-mid);
+}
+.footer .made-with{
+  font-family:'Poppins',sans-serif;
+  font-size:11px;
+  color:var(--text-light);
+  margin-top:10px;
+}
+
+/* Divider */
+.section-divider{
+  text-align:center;padding:10px 0;
+  position:relative;z-index:1;
+}
+.section-divider span{
+  color:var(--pink-main);font-size:20px;
+  letter-spacing:12px;
+}
+
+/* Toast */
+.toast{
+  position:fixed;bottom:30px;left:50%;
+  transform:translateX(-50%) translateY(100px);
+  background:var(--white);
+  padding:14px 28px;border-radius:50px;
+  box-shadow:0 8px 32px rgba(232,69,120,0.25);
+  font-size:13px;color:var(--text-mid);
+  z-index:10000;
+  transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  font-family:'Lora',serif;font-style:italic;
+  white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* Responsive */
+@media(min-width:600px){
+  .cards-grid{gap:20px;max-width:480px;}
+  .flip-card{height:160px;}
+  .memories-grid{max-width:500px;gap:16px;}
+  .letter{padding:50px 40px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Background Music (hidden audio element) -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="Images/BGM.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Floating Hearts Background -->
+<div class="hearts-bg" id="heartsBg"></div>
+
+<!-- Music Button -->
+<button class="music-btn" id="musicBtn" title="Toggle Music">
+  <i class="fas fa-music"></i>
+</button>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-emoji">🥺</div>
+  <h1>I'm Sorry</h1>
+  <p class="subtitle">I know I messed up, and I hate that I hurt you...</p>
+  <div class="name-tag">For My Beautiful Wife ❤️</div>
+  <div class="scroll-hint">
+    Scroll down, my love<br>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦ ✦ ✦</span></div>
+
+<!-- ===== WHY YOU'RE SPECIAL ===== -->
+<section class="special-section">
+  <h2 class="section-title">Why You're Special</h2>
+  <p class="section-subtitle">tap each card to see a reason I love you</p>
+  <div class="cards-grid">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <span class="q-mark">?</span>
+          <span class="card-num">Reason #1</span>
+        </div>
+        <div class="flip-card-back">
+          <span class="reason-icon">🌸</span>
+          <span class="reason-text">Your smile can light up my darkest days</span>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <span class="q-mark">?</span>
+          <span class="card-num">Reason #2</span>
+        </div>
+        <div class="flip-card-back">
+          <span class="reason-icon">💪</span>
+          <span class="reason-text">You're the strongest person I know</span>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <span class="q-mark">?</span>
+          <span class="card-num">Reason #3</span>
+        </div>
+        <div class="flip-card-back">
+          <span class="reason-icon">🤗</span>
+          <span class="reason-text">Your hugs feel like coming home</span>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <span class="q-mark">?</span>
+          <span class="card-num">Reason #4</span>
+        </div>
+        <div class="flip-card-back">
+          <span class="reason-icon">💕</span>
+          <span class="reason-text">You love me even when I'm unlovable</span>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <span class="q-mark">?</span>
+          <span class="card-num">Reason #5</span>
+        </div>
+        <div class="flip-card-back">
+          <span class="reason-icon">✨</span>
+          <span class="reason-text">You make everything beautiful just by being you</span>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <span class="q-mark">?</span>
+          <span class="card-num">Reason #6</span>
+        </div>
+        <div class="flip-card-back">
+          <span class="reason-icon">🏠</span>
+          <span class="reason-text">You turned a house into a home with your love</span>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <span class="q-mark">?</span>
+          <span class="card-num">Reason #7</span>
+        </div>
+        <div class="flip-card-back">
+          <span class="reason-icon">🦋</span>
+          <span class="reason-text">You still give me butterflies after all this time</span>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <span class="q-mark">?</span>
+          <span class="card-num">Reason #8</span>
+        </div>
+        <div class="flip-card-back">
+          <span class="reason-icon">🌙</span>
+          <span class="reason-text">You're my peace in this chaotic world</span>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <span class="q-mark">?</span>
+          <span class="card-num">Reason #9</span>
+        </div>
+        <div class="flip-card-back">
+          <span class="reason-icon">∞</span>
+          <span class="reason-text">There are infinite reasons, but this card is too small</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="tap-hint"><i class="fas fa-hand-pointer"></i> tap to reveal each reason</p>
+</section>
+
+<div class="section-divider"><span>✦ ✦ ✦</span></div>
+
+<!-- ===== LOVE LETTER ===== -->
+<section class="letter-section">
+  <h2 class="section-title">A Love Note</h2>
+  <p class="section-subtitle">from the bottom of my heart</p>
+  <div class="letter-container">
+    <div class="letter">
+      <div class="letter-header">
+        <span class="dear">My Dearest Wife,</span>
+      </div>
+      <div class="letter-body">
+        I know saying "sorry" isn't enough to fix what I broke. But I need you to know that <span class="highlight">every moment without your smile feels like an eternity</span>.
+        <br><br>
+        I was wrong. I should have listened. I should have been more careful with your heart — the most precious thing I've ever been trusted with.
+        <br><br>
+        You didn't deserve this. You deserve someone who cherishes every word you say, who never lets you feel unheard, who treats your tears like an emergency.
+        <br><br>
+        <span class="highlight">I want to be that person.</span> Not just today, but every single day for the rest of our lives.
+        <br><br>
+        I don't just love you — I am <em>grateful</em> for you. Grateful that you chose me. Grateful that you stayed this long. Grateful that you even exist.
+        <br><br>
+        Please forgive me. Not because I deserve it, but because <span class="highlight">your happiness matters more to me than my pride</span>.
+      </div>
+      <div class="letter-sign">
+        Forever Yours,<br>
+        <span class="from">Your Sorry Husband 🥺</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦ ✦ ✦</span></div>
+
+<!-- ===== MEMORIES ===== -->
+<section class="memories-section">
+  <h2 class="section-title">Our Memories</h2>
+  <p class="section-subtitle">every moment with you is a treasure</p>
+  <div class="memories-grid">
+    <div class="memory-card">
+      <img src="Images/Our First Date.jpeg" alt="Our First Date">
+      <div class="memory-overlay">
+        <span class="memory-label">Our First Date 💕</span>
+        <span class="memory-date">Where it all began</span>
+      </div>
+    </div>
+    <div class="memory-card">
+      <img src="Images/Sunset Together.jpeg" alt="Sunset Together">
+      <div class="memory-overlay">
+        <span class="memory-label">Sunset Together 🌅</span>
+        <span class="memory-date">Peaceful moments</span>
+      </div>
+    </div>
+    <div class="memory-card">
+      <img src="Images/Walking With You.jpeg" alt="Walking With You">
+      <div class="memory-overlay">
+        <span class="memory-label">Walking With You 🚶</span>
+        <span class="memory-date">Side by side, always</span>
+      </div>
+    </div>
+    <div class="memory-card">
+      <img src="Images/Your Laugh.jpeg" alt="Your Laugh">
+      <div class="memory-overlay">
+        <span class="memory-label">Your Laugh 😊</span>
+        <span class="memory-date">My favorite sound</span>
+      </div>
+    </div>
+    <div class="memory-card">
+      <img src="Images/Happy Us.jpeg" alt="Happy Us">
+      <div class="memory-overlay">
+        <span class="memory-label">Happy Us ❤️</span>
+        <span class="memory-date">This is what I live for</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦ ✦ ✦</span></div>
+
+<!-- ===== PROMISES ===== -->
+<section class="promises-section">
+  <h2 class="section-title">My Promises To You</h2>
+  <p class="section-subtitle">words I intend to keep, forever</p>
+  <div class="promises-list">
+    <div class="promise-item">
+      <div class="promise-icon"><i class="fas fa-ear-listen"></i></div>
+      <span class="promise-text">I promise to listen to you — not just hear you, but truly understand you.</span>
+    </div>
+    <div class="promise-item">
+      <div class="promise-icon"><i class="fas fa-shield-heart"></i></div>
+      <span class="promise-text">I promise to protect your heart like it's the most fragile thing in the world — because it is.</span>
+    </div>
+    <div class="promise-item">
+      <div class="promise-icon"><i class="fas fa-hands-holding-heart"></i></div>
+      <span class="promise-text">I promise to never let my ego come before your feelings. Ever again.</span>
+    </div>
+    <div class="promise-item">
+      <div class="promise-icon"><i class="fas fa-face-smile-beam"></i></div>
+      <span class="promise-text">I promise to make you laugh more and cry less. That's my life's mission now.</span>
+    </div>
+    <div class="promise-item">
+      <div class="promise-icon"><i class="fas fa-infinity"></i></div>
+      <span class="promise-text">I promise to choose you every single day — in good times and in bad, no matter what.</span>
+    </div>
+    <div class="promise-item">
+      <div class="promise-icon"><i class="fas fa-ring"></i></div>
+      <span class="promise-text">I promise that the vows I made to you were not just words — they are my oxygen.</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦ ✦ ✦</span></div>
+
+<!-- ===== RESPONSE ===== -->
+<section class="response-section">
+  <h2 class="section-title">Will You Forgive Me?</h2>
+  <p class="section-subtitle">I'll wait forever if I have to... but I hope not 🥺</p>
+  <div style="margin-top:30px;">
+    <button class="yes-btn" id="yesBtn">Yes, I Forgive You ❤️</button>
+    <button class="no-btn" id="noBtn">Not Yet 😤</button>
+  </div>
+  <div class="yes-response" id="yesResponse">
+    <div class="yes-heart-burst">🥹❤️🎉</div>
+    <h2>Thank You, My Love!</h2>
+    <p>I promise you won't regret this. I'll spend every day proving that I'm worth your forgiveness.</p>
+    <p style="margin-top:15px;font-size:20px;">I love you more than words could ever say 💕</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<section class="footer">
+  <div class="footer-heart">❤️</div>
+  <p>You are my everything.</p>
+  <p>Made with all my love (and a lot of regret) 💔➡️❤️</p>
+  <p class="made-with">— Your Husband, who is very, very sorry</p>
+</section>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== Background Music =====
+var bgMusic = document.getElementById('bgMusic');
+var musicBtn = document.getElementById('musicBtn');
+var musicPlaying = false;
+var musicStarted = false;
+
+/* Browsers block autoplay, so we start music on first user interaction */
+function startMusic() {
+  if (musicStarted) return;
+  musicStarted = true;
+  bgMusic.volume = 0.6;
+  var playPromise = bgMusic.play();
+  if (playPromise !== undefined) {
+    playPromise.then(function() {
+      musicPlaying = true;
+      musicBtn.classList.add('playing');
+      musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    }).catch(function() {
+      /* Auto-play blocked, user needs to tap the button manually */
+      musicStarted = false;
+    });
+  }
+}
+
+/* Start music on any first tap/scroll on the page */
+document.addEventListener('click', startMusic, { once: true });
+document.addEventListener('touchstart', startMusic, { once: true });
+document.addEventListener('scroll', function() { startMusic(); }, { once: true });
+
+/* Music button: toggle play/pause manually */
+musicBtn.addEventListener('click', function(e) {
+  e.stopPropagation(); // prevent re-triggering startMusic
+
+  if (!musicStarted) {
+    /* First manual tap on the button */
+    musicStarted = true;
+    bgMusic.volume = 0.6;
+    bgMusic.play().then(function() {
+      musicPlaying = true;
+      musicBtn.classList.add('playing');
+      musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      showToast('🎵 Music is playing');
+    }).catch(function() {
+      showToast('⚠️ Tap again to play music');
+      musicStarted = false;
+    });
+    return;
+  }
+
+  if (musicPlaying) {
+    bgMusic.pause();
+    musicPlaying = false;
+    musicBtn.classList.remove('playing');
+    musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+    showToast('🔇 Music paused');
+  } else {
+    bgMusic.play().then(function() {
+      musicPlaying = true;
+      musicBtn.classList.add('playing');
+      musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      showToast('🎵 Music is playing');
+    });
+  }
+});
+
+/* ===== Floating Hearts ===== */
+function createFloatingHearts() {
+  var container = document.getElementById('heartsBg');
+  var hearts = ['♥', '♡', '❤', '💕', '🤍', '💗'];
+  for (var i = 0; i < 20; i++) {
+    var heart = document.createElement('span');
+    heart.className = 'floating-heart';
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.fontSize = (Math.random() * 16 + 8) + 'px';
+    heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+    heart.style.animationDelay = (Math.random() * 15) + 's';
+    container.appendChild(heart);
+  }
+}
+createFloatingHearts();
+
+/* ===== Scroll Progress ===== */
+window.addEventListener('scroll', function() {
+  var scrollTop = document.documentElement.scrollTop;
+  var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var progress = (scrollTop / scrollHeight) * 100;
+  document.getElementById('scrollProgress').style.width = progress + '%';
+});
+
+/* ===== Promise Items Scroll Animation ===== */
+var promiseItems = document.querySelectorAll('.promise-item');
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry, index) {
+    if (entry.isIntersecting) {
+      setTimeout(function() {
+        entry.target.classList.add('visible');
+      }, index * 150);
+    }
+  });
+}, { threshold: 0.2 });
+promiseItems.forEach(function(item) { observer.observe(item); });
+
+/* ===== "No" Button - Runs Away ===== */
+var noBtn = document.getElementById('noBtn');
+var noClickCount = 0;
+var noMessages = [
+  "Please? 🥺",
+  "I'll do anything! 😭",
+  "Pretty please? 💕",
+  "Just one more chance? 🙏",
+  "I'll buy you food! 🍕",
+  "I'll do the dishes! 🧽",
+  "I'll give you a massage! 💆",
+  "I'll watch your show! 📺",
+  "...okay I'll keep begging 🥹",
+];
+
+noBtn.addEventListener('mouseenter', function() {
+  noClickCount++;
+  if (noClickCount <= 3) {
+    var dx = (Math.random() - 0.5) * 200;
+    var dy = (Math.random() - 0.5) * 100;
+    this.style.setProperty('--dx', dx + 'px');
+    this.style.setProperty('--dy', dy + 'px');
+  }
+});
+
+noBtn.addEventListener('click', function() {
+  noClickCount++;
+  var msg = noMessages[Math.min(noClickCount - 1, noMessages.length - 1)];
+  showToast(msg);
+
+  var scale = Math.max(0.5, 1 - noClickCount * 0.08);
+  this.style.transform = 'scale(' + scale + ')';
+  this.style.opacity = Math.max(0.3, 1 - noClickCount * 0.08);
+
+  var yesScale = Math.min(1.3, 1 + noClickCount * 0.04);
+  document.getElementById('yesBtn').style.transform = 'scale(' + yesScale + ')';
+});
+
+/* ===== "Yes" Button ===== */
+document.getElementById('yesBtn').addEventListener('click', function() {
+  document.getElementById('yesResponse').classList.add('show');
+  noBtn.style.display = 'none';
+  this.style.display = 'none';
+  launchConfetti();
+  showToast('I love you so much! 🥹❤️');
+});
+
+/* ===== Confetti ===== */
+function launchConfetti() {
+  var container = document.createElement('div');
+  container.className = 'confetti-container';
+  document.body.appendChild(container);
+
+  var colors = ['#FF8FAB', '#FF6B8A', '#E84578', '#FFD6E0', '#FFB6C1', '#D4A574', '#FF4081'];
+
+  for (var i = 0; i < 100; i++) {
+    var piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.width = (Math.random() * 10 + 5) + 'px';
+    piece.style.height = (Math.random() * 10 + 5) + 'px';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+    piece.style.animationDelay = (Math.random() * 1) + 's';
+    container.appendChild(piece);
+  }
+
+  setTimeout(function() { container.remove(); }, 5000);
+}
+
+/* ===== Toast ===== */
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(function() { toast.classList.remove('show'); }, 2500);
+}
+
+/* ===== Flip cards subtle hint on scroll ===== */
+var flipCards = document.querySelectorAll('.flip-card');
+var flipObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'pulse 1.5s ease-in-out 1';
+    }
+  });
+}, { threshold: 0.5 });
+flipCards.forEach(function(card) { flipObserver.observe(card); });
+</script>
+
+</body>
+</html>
